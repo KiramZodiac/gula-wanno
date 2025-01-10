@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Phone } from 'lucide-react';
+import { ShoppingCartIcon } from 'lucide-react';
 
 interface Product {
   id: number;
@@ -69,7 +70,7 @@ const ProductDetails = ({ params }: { params: Promise<{ id: string }> }) => {
   }
 
   return (
-    <div className="container mx-auto p-6 max-w-7xl  min-h-screen flex flex-col justify-center">
+    <div className="container mx-auto max-sm:items-center  max-w-7xl  min-h-screen max-sm:h-screen flex flex-col justify-center">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden md:flex">
         <div className="md:w-1/2 flex justify-center items-center">
           {product.image && (
@@ -89,17 +90,18 @@ const ProductDetails = ({ params }: { params: Promise<{ id: string }> }) => {
           <p className="text-gray-600 mb-4 leading-relaxed break-words">{product.description}</p>
           <p className="text-2xl font-semibold text-green-600 mb-6">UGX {product.price}</p>
           <div className="flex space-x-4">
-            <Button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            <Button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" onClick={()=>alert('hello')}>
+              <ShoppingCartIcon/>
               Add to Cart
             </Button>
-            <Link 
-  href={`tel:${product.contact}`} 
-  passHref
-  className="px-6  space-x-3 h-10 w-1/2 justify-center items-center py-3 flex border-2 rounded-lg hover:bg-slate-500 transition  gap-3"
-> <Phone />
-  Contact Seller
-</Link>
+            <Button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" >
+            <Phone/> 
+              <Link href={`tel:${product.contact}`}> Contact Seller</Link>
+              
+            </Button>
 
+            
+     
           </div>
         </div>
       </div>
